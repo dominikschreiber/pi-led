@@ -29,7 +29,7 @@ router.get('/color/:color', function(req, res) {
     }].map(function(c) {
         return {
             pin: c.pin,
-            brightness: Math.round(100 * c.brightness / 255.0) / 100
+            brightness: (c.brightness / 255.0).toFixed(2)
         };
     }).forEach(function(c) {
         var command = 'echo "' + c.pin + '=' + c.brightness + '" > /dev/pi-blaster';
