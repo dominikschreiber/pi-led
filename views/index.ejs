@@ -51,8 +51,15 @@
 		.config(function($stateProvider) {
 			$stateProvider.state('home', {
 				url: '/',
-				templateUrl: 'home.tpl.html'
+				templateUrl: 'home.tpl.html',
+				controller: 'homeCtrl'
 			});
+		})
+
+		.controller('homeCtrl', function($scope, $http) {
+			$scope.shutdown = function() {
+				$http.get('/api/color/000000');
+			};
 		});
 		</script>
 		<script id="home.tpl.html" type="text/ng-template">
@@ -61,10 +68,14 @@
 			</ion-nav-bar>
 			<ion-content>
 				<div class="list">
-					<a class="item item-icon-right" ui-sref="color">
-						Farbe wählen
+					<a class="item item-icon-left" ui-sref="color">
 						<i class="icon ion-levels"></i>
+						Farbe wählen
 					</a>
+					<div class="item item-icon-left" ng-click="shutdown()">
+						<i class="icon ion-power"></i>
+						pi-led abschalten
+					</div>
 				</div>
 			</ion-content>
 		</ion-view>
