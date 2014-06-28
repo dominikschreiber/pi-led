@@ -4,7 +4,9 @@
 	<head>
 		<title>led</title>
 
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.min.css">
 		<style>
 		#colorPicker {
 			display: block;
@@ -14,56 +16,51 @@
 		</style>
 	</head>
 	<body>
-		<div ng-view></div>
+		<ion-nav-view animation="slide-left-right"></ion-nav-view>
 
-		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular-route.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.13/angular-touch.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+		<script src="http://code.ionicframework.com/1.0.0-beta.8/js/ionic.bundle.min.js"></script>
 		<script>
 		angular.module('led', [
 			'home'
 		  , 'color'
-		  , 'ng'
-		  , 'ngRoute'
+		  , 'ionic'
 		])
 
-		.config(function($routeProvider, $locationProvider) {
-			$routeProvider.otherwise({
-				redirectTo: '/'
-			});
-
-			$locationProvider.html5Mode(false);
-			$locationProvider.hashPrefix('!');
+		.config(function($stateProvider, $urlRouterProvider) {
+			$urlRouterProvider.otherwise('/');
 		});
 		</script>
 		<script>
-		angular.module('home', ['ng', 'ngRoute'])
+		angular.module('home', ['ionic'])
 
-		.config(function($routeProvider) {
-			$routeProvider.when('/', {
+		.config(function($stateProvider) {
+			$stateProvider.state('home', {
+				url: '/',
 				templateUrl: 'home.tpl.html'
 			});
 		});
 		</script>
 		<script id="home.tpl.html" type="text/ng-template">
-		<ul class="nav nav-pills nav-stacked">
-			<li><a href="#!/color">Farbe wählen</a></li>
-		</ul>
+		<ion-view>
+			<ion-content>
+				<ul class="list">
+					<li class="item"><a ui-sref="color">Farbe wählen</a></li>
+				</ul>
+			</ion-content>
+		</ion-view>
 		</script>
 		<script>
-		angular.module('color', ['ng', 'ngRoute', 'ngTouch'])
+		angular.module('color', ['ionic'])
 
-		.config(function($routeProvider) {
-			$routeProvider.when('/color', {
+		.config(function($stateProvider) {
+			$stateProvider.state('color', {
+				url: '/color',
 				templateUrl: 'color.tpl.html',
 				controller: 'colorCtrl'
 			});
 		})
 
-		.controller('colorCtrl', function($scope, $http, $swipe, $timeout, $window) {
+		.controller('colorCtrl', function($scope, $http, $ionicGesture, $timeout, $window, $log) {
 			var height = $window.innerHeight
 			  , width = $window.innerWidth
 			  , colorTimeout;
@@ -80,14 +77,12 @@
 				}, 0.3 * 1000);
 			};
 
-			$swipe.bind(angular.element(document.getElementById('colorPicker')), {
-				'move': function(coords) {
-					$scope.updateColor({
-						offsetX: coords.x,
-						offsetY: coords.y
-					});
-				}
-			});
+			$ionicGesture.on('drag', function(event) {
+				$scope.updateColor({
+					offsetX: event.gesture.center.pageX,
+					offsetY: event.gesture.center.pageY
+				});
+			}, angular.element(document.getElementById('colorPicker')));
 
 			function hslToRgb(h, s, l){
 			    var r, g, b;
@@ -115,7 +110,10 @@
 		});
 		</script>
 		<script id="color.tpl.html" type="text/ng-template">
-		<div id="colorPicker" ng-style="{'background-color': color}" ng-click="updateColor($event)"></div>
+		<ion-view>
+			<ion-content id="colorPicker" ng-style="{'background-color': color}" ng-click="updateColor($event)">
+			</ion-content>
+		</ion-view>
 		</script>
 	</body>
 </html>
