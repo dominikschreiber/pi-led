@@ -9,7 +9,7 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-status-bar-style" content="translucent black">
 		<meta name="apple-mobile-web-app-title" content="pi-led">
 
 		<link rel="apple-touch-icon" sizes="152x152" href="/images/icon/pi-led-152x152.png">
@@ -29,13 +29,6 @@
 		<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/images/startup/pi-led-320x460.png">
 
 		<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0-beta.8/css/ionic.min.css">
-		<style>
-		#colorPicker {
-			display: block;
-			width: 100vw;
-			height: 100vh;
-		}
-		</style>
 	</head>
 	<body>
 		<ion-nav-view animation="slide-left-right"></ion-nav-view>
@@ -63,11 +56,16 @@
 		});
 		</script>
 		<script id="home.tpl.html" type="text/ng-template">
-		<ion-view>
+		<ion-view title="pi-led">
+			<ion-nav-bar class="bar-stable nav-title-slide-ios7">
+			</ion-nav-bar>
 			<ion-content>
-				<ul class="list">
-					<li class="item"><a ui-sref="color">Farbe wählen</a></li>
-				</ul>
+				<div class="list">
+					<a class="item item-icon-right" ui-sref="color">
+						Farbe wählen
+						<i class="icon ion-levels"></i>
+					</a>
+				</div>
 			</ion-content>
 		</ion-view>
 		</script>
@@ -83,7 +81,7 @@
 		})
 
 		.controller('colorCtrl', function($scope, $http, $ionicGesture, $timeout, $window, $log) {
-			var height = $window.innerHeight
+			var height = $window.innerHeight - 44
 			  , width = $window.innerWidth
 			  , colorTimeout;
 
@@ -102,7 +100,7 @@
 			$ionicGesture.on('drag', function(event) {
 				$scope.updateColor({
 					offsetX: event.gesture.center.pageX,
-					offsetY: event.gesture.center.pageY
+					offsetY: event.gesture.center.pageY - 44
 				});
 			}, angular.element(document.getElementById('colorPicker')));
 
@@ -132,8 +130,13 @@
 		});
 		</script>
 		<script id="color.tpl.html" type="text/ng-template">
-		<ion-view>
-			<ion-content id="colorPicker" ng-style="{'background-color': color}" ng-click="updateColor($event)">
+		<ion-view title="Farbe wählen">
+			<ion-nav-bar class="bar-stable nav-title-slide-ios7">
+				<ion-nav-buttons>
+					<a ui-sref="home" class="button button-clear"><i class="ion-ios7-arrow-left"></i></a>
+				</ion-nav-buttons>
+			</ion-nav-bar>
+			<ion-content id="colorPicker" ng-style="{'background-color': color}" ng-click="updateColor($event)" scroll="false" has-bouncing="false">
 			</ion-content>
 		</ion-view>
 		</script>
