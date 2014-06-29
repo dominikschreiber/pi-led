@@ -153,7 +153,7 @@
 				});
 				if (colorTimeout) { $timeout.cancel(colorTimeout); }
 				colorTimeout = $timeout(function() {
-					$http.get('/api/color/' + $scope.color.substring(1));
+					$http.post('/api/color/', { color: {h: hue, s: 1, l: lightness} });
 				}, 0.3 * 1000);
 			};
 
