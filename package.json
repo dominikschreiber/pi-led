@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node_modules/forever/bin/forever start bin/www",
+    "stop": "node_modules/forever/bin/forever stop bin/www"
   },
   "dependencies": {
     "body-parser": "~1.0.0",
@@ -12,8 +13,11 @@
     "ejs": "~0.8.5",
     "express": "~4.2.0",
     "express-params": "0.0.3",
+    "forever": "^0.11.1",
     "less-middleware": "1.0.x",
     "morgan": "~1.0.0",
-    "static-favicon": "~1.0.0"
+    "onecolor": "^2.4.0",
+    "static-favicon": "~1.0.0",
+    "underscore": "^1.6.0"
   }
 }
