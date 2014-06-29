@@ -1,5 +1,5 @@
-pi-led
-======
+pi-led-stripe
+=============
 
 installation
 ------------
@@ -23,7 +23,7 @@ Then, clone this repository and install the dependencies:
 
 ```bash
 # get pi-led (this repository)
-git clone https://github.com/dominikschreiber/pi-led
+git clone https://github.com/dominikschreiber/pi-led-stripe
 cd pi-led
 npm install
 # start as daemon
