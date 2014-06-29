@@ -1,5 +1,5 @@
-led
-===
+pi-led
+======
 
 installation
 ------------
@@ -30,19 +30,4 @@ npm install
 npm start
 # stop daemon
 npm stop
-```
-
-stop with
-
-```bash
-forever stop bin/www
-```
-
-api
----
-
-change the color of the leds to <hex-value>
-```bash
-/api/color/<hex-value>
-# i.e. /api/color/c0ffee
 ```
