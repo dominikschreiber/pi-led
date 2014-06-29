@@ -1,7 +1,27 @@
 {
-  "name": "led",
-  "version": "0.0.1",
-  "private": true,
+  "name": "pi-led",
+  "version": "0.0.3",
+  "description": "raspberry pi controller for 12V rgb led stripe, with webapp frontend",
+  "author": "Dominik Schreiber <dominik@dominikschreiber.com>",
+  "contributors": [
+    {
+      "name": "Dominik Schreiber",
+      "email": "dominik@dominikschreiber.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominikschreiber/pi-led"
+  },
+  "bugs": {
+    "url": "https://github.com/dominikschreiber/pi-led/issues"
+  },
+  "keywords": [
+    "raspberry",
+    "led",
+    "webapp"
+  ],
   "scripts": {
     "start": "node_modules/forever/bin/forever start bin/www",
     "stop": "node_modules/forever/bin/forever stop bin/www"
