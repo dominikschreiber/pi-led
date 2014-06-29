@@ -27,7 +27,9 @@ git clone https://github.com/dominikschreiber/pi-led
 cd pi-led
 npm install
 # start as daemon
-forever start bin/www
+npm start
+# stop daemon
+npm stop
 ```
 
 stop with
