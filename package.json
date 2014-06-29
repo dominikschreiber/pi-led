@@ -10,7 +10,7 @@
     }
   ],
   "license": "MIT",
-  "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/dominikschreiber/pi-led"
   },
