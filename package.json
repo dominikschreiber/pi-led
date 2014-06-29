@@ -1,6 +1,6 @@
 {
-  "name": "pi-led",
-  "version": "0.0.3",
+  "name": "pi-led-stripe",
+  "version": "0.0.4",
   "description": "raspberry pi controller for 12V rgb led stripe, with webapp frontend",
   "author": "Dominik Schreiber <dominik@dominikschreiber.com>",
   "contributors": [
