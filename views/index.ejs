@@ -58,7 +58,7 @@
 
 		.controller('homeCtrl', function($scope, $http) {
 			$scope.shutdown = function() {
-				$http.get('/api/color/000000');
+				$http.post('/api/color', {color: {h:0,s:1,l:0}});
 			};
 		});
 		</script>
